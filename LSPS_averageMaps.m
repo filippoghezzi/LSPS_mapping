@@ -14,7 +14,7 @@ function rez=LSPS_averageMaps(par, rez)
     end
     
     if ~isfield(rez,'tmp')
-        [layersMap,layersCoordinates]= updateLayers(rez.layersMap,rez.layersCoordinates,binMoved12,binMoved23,size(AUC_MAP,1),par.mapCellPositionDIC,par.brainArea);
+            [layersMap,layersCoordinates]= updateLayers(rez.layersMap,rez.layersCoordinates,binMoved12,binMoved23,size(AUC_MAP,1),par.mapCellPositionDIC,par.brainArea);
         rez.tmp=rez;
         rez.layersMap=layersMap;
         rez.layersCoordinates=layersCoordinates;

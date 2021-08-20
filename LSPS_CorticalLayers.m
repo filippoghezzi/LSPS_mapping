@@ -9,7 +9,7 @@ function rez=LSPS_CorticalLayers(data,par,rez)
                 DICfilename=fullfile(data.foldername{i},data.CellID{i},data.MapDIC{i});
                 
                 [rez.layersMap,rez.layersCoordinates,rez.pialDistance]=LSPS_findLayers(par,DICfilename,data.MapOrientation(i),data.MouseAge(i),data.CellLayer(i),data.CellID(i),data.MapType(i),data.BrainArea(i));  
-                       
+                      
             end
         end
         

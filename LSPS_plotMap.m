@@ -20,7 +20,7 @@ function LSPS_plotMap(map,varargin)
     addOptional(p,'IorE',[]);
     addOptional(p,'BrainArea',[]);
     addOptional(p,'CellType',[]);
-    addOptional(p,'Age',[]);
+    addOptional(p,'Age',5);
     addOptional(p,'Max',[])
     
     parse(p,map,varargin{:});
@@ -28,19 +28,18 @@ function LSPS_plotMap(map,varargin)
 %% Pre-process map
     map=p.Results.map;
     
-    if strcmpi(p.Results.Normalization,'Sum') && sum(map(:))~=0
-        map=map./sum(map(:))*100;   
-    elseif strcmpi(p.Results.Normalization,'Max') && max(map(:))~=0
-        map=map./max(map(:))*100;   
-    end
+%     if strcmpi(p.Results.Normalization,'Sum') && sum(map(:))~=0
+%         map=map./sum(map(:))*100;   
+%     elseif strcmpi(p.Results.Normalization,'Max') && max(map(:))~=0
+%         map=map./max(map(:))*100;   
+%     end
     
 %% Plot map
-    fontSize=30;
+    fontSize=20;
     lineWidth=0.75;
     
     im=imagesc(map);
     im.AlphaData=~isnan(map);
-    
     
     ax=gca;
     if ~isempty(p.Results.Max)
@@ -77,6 +76,9 @@ function LSPS_plotMap(map,varargin)
         ax.Color='k';
     elseif strcmp(p.Results.IorE,'Inhibitory')
         colormap('hot');
+    elseif strcmp(p.Results.IorE,'Extracellular')
+        colormap('parula');
+        c.Label.String='Spike number';
     end
     
 %% Plot layer lines and names

@@ -44,10 +44,13 @@ function [outputTrace,sr,Vh]=loadData_VC(filename,varargin)
     voltage=zeros(sweepsSamples*sweepsTot,1);
     laser=zeros(sweepsSamples*sweepsTot,1);
     
-    flag=0;
+    flagVoltage=0;
+    flagLaser=0;
     for sweep=1:sweepsTot
         if any(currentChIdx)
-            current(sweepsSamples*(sweep-1)+1:sweepsSamples*sweep)=data(:,currentChIdx,sweep);
+            dataRaw=data(:,currentChIdx,sweep);
+            dataRaw=detrend(dataRaw);
+            current(sweepsSamples*(sweep-1)+1:sweepsSamples*sweep)=dataRaw;
         else
             error('No current sweep identified')
         end
@@ -55,20 +58,26 @@ function [outputTrace,sr,Vh]=loadData_VC(filename,varargin)
         if any(voltageChIdx)
             voltage(sweepsSamples*(sweep-1)+1:sweepsSamples*sweep)=data(:,voltageChIdx,sweep);
         else
-            flag=1;
+            flagVoltage=1;
         end
                 
         if any(laserChIdx)
             laser(sweepsSamples*(sweep-1)+1:sweepsSamples*sweep)=data(:,laserChIdx,sweep);
         else
-            error('No laser sweep identified')
+            flagLaser=1;
         end
     end
     
-    if flag
+    if flagVoltage
         warning('No voltage sweep identified - setting Voltage = NaN')
         voltage=NaN;
     end
+    
+    if flagLaser
+        warning('No laser sweep identified - setting laser = NaN')
+        laser=NaN;
+%         load('C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Maps\laserTrace.mat','laser')    
+    end        
 
 %% Low pass filtering
     if fLow~=0

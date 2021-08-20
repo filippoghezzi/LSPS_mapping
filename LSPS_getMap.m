@@ -1,4 +1,4 @@
-function [AUCmap]=LSPS_getMap(data,par,varargin)
+function [outputMap]=LSPS_getMap(data,par,varargin)
 % function [AUCmap,traceMap,Pmap]=LSPS_generateMap(trace,sr,par,plotting)
 % Function to obtain AUC map from the raw data in input.
 % Possibility to plot output map and trace.
@@ -37,10 +37,18 @@ function [AUCmap]=LSPS_getMap(data,par,varargin)
     
     conditionDef=@(x) x:x+(par.monoSynapticInterval(2)*sr);
     monoSynapticDef=@(x) x+(par.monoSynapticInterval(1)*sr):x+(par.monoSynapticInterval(2)*sr); 
-    baselineDef=@(x) x-(0.1*sr):x;
+    baselineDef=@(x) x-(0.01*sr):x;
     
     if strcmp(par.mapIorE,'Excitatory')
         current=-current;
+    end
+    
+    if any(isnan(laser))
+        if strcmp(par.mapStimulus,'Glutamate')
+            load('C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Maps\laserTrace_Glutamate.mat','laser')
+        elseif strcmp(par.mapStimulus,'ATP')
+            load('C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Maps\laserTrace_ATP.mat','laser')
+        end
     end
     
     %% Find laser onset
@@ -49,9 +57,10 @@ function [AUCmap]=LSPS_getMap(data,par,varargin)
     if size(laserONidx,2)~=numel(idxMap) && ~strcmp(par.mapTechnology,'UGA-40')
         warning('Found %d laser spots against %d spots in the index map',size(laserONidx,2),numel(idxMap))
     end
-    
+    directResponsesSweeps=[];
 %% Measure AUC at each laser location
     AUC=zeros(length(laserONidx),1);
+    IPSC=zeros(length(laserONidx),1);
     peakLoc=zeros(length(laserONidx),1);
     
     for sweep=1:numel(laserONidx)
@@ -69,13 +78,22 @@ function [AUCmap]=LSPS_getMap(data,par,varargin)
         conditionEvent=abs(current(conditionWindow)-mean(current(baselineWindow)))>par.synapticThreshold*std(current(baselineWindow));
 %Condition 2. Determine if there is a direct response according to par.directResponseTime. For inhibitory maps, add the conditions related to direction of current deflections. 
         if strcmp(par.mapIorE,'Excitatory')
-            conditionDirectResponses=find(conditionEvent,1,'first')/sr<par.directResponseTime;
+            if strcmp(par.directResponseOnsetMethod,'First')
+                conditionDirectResponses=find(conditionEvent,1,'first')/sr<par.directResponseTime;
+            elseif strcmp(par.directResponseOnsetMethod,'Last')
+                [~, directResponseIdx] = max(current(conditionWindow)-mean(current(baselineWindow)));
+                directResponseWindow = (laserONidx(sweep): directResponseIdx+laserONidx(sweep));
+                conditionDirectResponses=current(directResponseWindow)-mean(current(baselineWindow))<1*std(current(baselineWindow));
+                conditionDirectResponses=find(conditionDirectResponses,1,'last')/sr<par.directResponseTime;
+            end
+    
         elseif strcmp(par.mapIorE,'Inhibitory')
             conditionDirectResponses=(find(conditionEvent,1,'first')/sr<par.directResponseTime & current(find(conditionEvent,1,'first'))<mean(current(baselineWindow)));
         end
         
         if any(conditionEvent)
             if conditionDirectResponses
+                directResponsesSweeps = [directResponsesSweeps;sweep];
                 startSweep=laserONidx(sweep)-sweepLaserLag*sr;
                 endSweep=laserONidx(sweep)+(1*sr);
                 if startSweep<1
@@ -87,21 +105,28 @@ function [AUCmap]=LSPS_getMap(data,par,varargin)
                 [AUC(sweep,1),peakLoc(sweep,1)]=directResponse(current(startSweep:endSweep),par,sweepLaserLag*sr);                    
             else
                 AUC(sweep,1)=trapz(current(monoSynapticWindow)-mean(current(baselineWindow)));
-                [~,peakLoc(sweep,1)]=max(current(monoSynapticWindow)-mean(current(baselineWindow)));
+                [IPSC(sweep,1),peakLoc(sweep,1)]=max(current(monoSynapticWindow)-mean(current(baselineWindow)));
             end
         end
     end
-    
+%    directResponsesSweeps 
 % Remove negative values of AUC (too large direct responses in inhibitory maps or noise).
     AUC(AUC<0)=0;
-   
+    IPSC(IPSC<0)=0;
             
     if strcmp(par.mapTechnology,'UGA-40')
         AUC=correctUGA40(AUC);
+        if numel(AUC) < numel(idxMap)
+            AUC=[AUC;0];
+        end
     end
     
 %% Build heatmap
-    AUCmap=AUC(idxMap);
+    if  par.IPSCmap
+        outputMap=IPSC(idxMap);
+    else
+        outputMap=AUC(idxMap);
+    end
 
     %Rotate maps according to slice orientation
     if strcmp(par.mapOrientation,'Right')
@@ -109,7 +134,7 @@ function [AUCmap]=LSPS_getMap(data,par,varargin)
     elseif strcmp(par.mapOrientation,'Left')
         rotationcoff=3;
     end
-    AUCmap=rot90(AUCmap,rotationcoff); 
+    outputMap=rot90(outputMap,rotationcoff); 
 
 %%  Plotting current and IPSC peak    
     if plotting

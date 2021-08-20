@@ -11,8 +11,13 @@ function rez=LSPS_Mapping(par, rez)
 %% Main data analysis: obtain individual maps and cell coordinates from individual recording file
     for i=1:size(par.filenames,1)
         [trace, par.sr, rez.Vh] = loadData_VC(par.filenames{i}, 'LowPassFrequency',par.filterLow);
-        
-        rez.AUCmaps(:,:,i) = LSPS_getMap(trace, par, 'Plotting',false);
+        if strcmp(par.mapIorE,'Extracellular')
+            [rez.AUCmaps(:,:,i), rez.spikeTimes{i}] = LSPS_getMap_Extracellular(trace, par, 'Plotting',false, 'CellPosition', par.mapCellPosition(i));
+        elseif  strcmp(par.mapIorE,'Inhibitory')
+            rez.AUCmaps(:,:,i) = LSPS_getMap(trace, par, 'Plotting',false);
+        elseif strcmp(par.mapIorE,'Excitatory')
+            rez.AUCmaps(:,:,i) = LSPS_getMap_fromCSV(par.csvFiles{i}, trace, par, 'Plotting',false);
+        end
         
         rez.cellYcoordinate(i) = LSPS_getCellCoordinates(par.mapIdx, par.mapCellPosition(i), par.mapOrientation);
     end
