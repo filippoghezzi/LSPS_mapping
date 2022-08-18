@@ -62,6 +62,7 @@ function [outputMap]=LSPS_getMap(data,par,varargin)
     AUC=zeros(length(laserONidx),1);
     IPSC=zeros(length(laserONidx),1);
     peakLoc=zeros(length(laserONidx),1);
+    directResponseFlag=0;
     
     for sweep=1:numel(laserONidx)
 
@@ -88,11 +89,12 @@ function [outputMap]=LSPS_getMap(data,par,varargin)
             end
     
         elseif strcmp(par.mapIorE,'Inhibitory')
-            conditionDirectResponses=(find(conditionEvent,1,'first')/sr<par.directResponseTime & current(find(conditionEvent,1,'first'))<mean(current(baselineWindow)));
+            conditionDirectResponses=(find(conditionEvent,1,'first')/sr<par.directResponseTime & current(find(conditionEvent,1,'first')+conditionWindow(1))<mean(current(baselineWindow)));
         end
         
         if any(conditionEvent)
             if conditionDirectResponses
+                directResponseFlag=1;
                 directResponsesSweeps = [directResponsesSweeps;sweep];
                 startSweep=laserONidx(sweep)-sweepLaserLag*sr;
                 endSweep=laserONidx(sweep)+(1*sr);
@@ -102,11 +104,16 @@ function [outputMap]=LSPS_getMap(data,par,varargin)
                 if endSweep>length(current)
                     endSweep=length(current);
                 end
-                [AUC(sweep,1),peakLoc(sweep,1)]=directResponse(current(startSweep:endSweep),par,sweepLaserLag*sr);                    
+                [AUC(sweep,1),peakLoc(sweep,1)]=directResponse(current(startSweep:endSweep),par,sweepLaserLag*sr); 
             else
-                AUC(sweep,1)=trapz(current(monoSynapticWindow)-mean(current(baselineWindow)));
-                [IPSC(sweep,1),peakLoc(sweep,1)]=max(current(monoSynapticWindow)-mean(current(baselineWindow)));
+                if par.mouseAge>8 || directResponseFlag==0
+                    AUC(sweep,1)=trapz(current(monoSynapticWindow)-mean(current(baselineWindow)));
+                    [IPSC(sweep,1),peakLoc(sweep,1)]=max(current(monoSynapticWindow)-mean(current(baselineWindow)));
+                end
+                directResponseFlag=0;            
             end
+        else
+            directResponseFlag=0;
         end
     end
 %    directResponsesSweeps 

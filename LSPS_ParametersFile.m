@@ -68,7 +68,7 @@
     end
     
     % Monosynaptic windows
-    par.directResponseTime=0.02; %s
+    par.directResponseTime=[0.040, 0.020, 0.020]; %s
     par.synapticThreshold=6;
     
     ExtracellularInterval=[0.020,0.500];
@@ -77,10 +77,13 @@
     if strcmpi(par.mapIorE,'Inhibitory')
         if par.mouseAge<=8
             par.monoSynapticInterval=InhibitoryMonoSynapticInterval(1,:);
+            par.directResponseTime=par.directResponseTime(1);
         elseif par.mouseAge>=9 && par.mouseAge<=13
             par.monoSynapticInterval=InhibitoryMonoSynapticInterval(2,:);
+            par.directResponseTime=par.directResponseTime(2);
         elseif par.mouseAge>=14
             par.monoSynapticInterval=InhibitoryMonoSynapticInterval(3,:);
+            par.directResponseTime=par.directResponseTime(3);
         end
     elseif strcmpi(par.mapIorE,'Excitatory')
         par.monoSynapticInterval=ExcitatoryMonoSynapticInterval;
@@ -101,7 +104,7 @@
     end
     par.directResponseOnsetMethod='Last'; % 'First' to take the onset according to the first element that satisfy condition (x>par.synapticThreshold*std(baseline)). 'Last' for last element in condition (x>std(baseline))
     %Average map
-    par.removeSingleSpots=1; %1 to remove spots where IPSC are elicited in one and only one of the multiple maps
+    par.removeSingleSpots=0; %1 to remove spots where IPSC are elicited in one and only one of the multiple maps
     par.plotIndividualMap=1; %Plot map image for each analysed file and save
     par.plotAverageMap=1;     %Plot final map each cell and save
     par.averageMapNormalization='No'; %'No' to plot raw map; 'Sum' for sum of all individual map pixels or 'Max' for max value of indiviual map.

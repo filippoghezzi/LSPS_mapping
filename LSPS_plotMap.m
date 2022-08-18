@@ -40,7 +40,7 @@ function LSPS_plotMap(map,varargin)
     
     im=imagesc(map);
     im.AlphaData=~isnan(map);
-    
+    daspect([1 1 1])
     ax=gca;
     if ~isempty(p.Results.Max)
         ax.CLim=[0 p.Results.Max];
@@ -49,7 +49,6 @@ function LSPS_plotMap(map,varargin)
     ax.Box='off';
     ax.XAxis.Visible='off';
     ax.YAxis.Visible='off';
-    daspect([1 1 1])
     
     
 %% Plot symbol for cell location

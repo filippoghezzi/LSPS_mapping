@@ -49,7 +49,7 @@ function [outputTrace,sr,Vh]=loadData_VC(filename,varargin)
     for sweep=1:sweepsTot
         if any(currentChIdx)
             dataRaw=data(:,currentChIdx,sweep);
-            dataRaw=detrend(dataRaw);
+%             dataRaw=detrend(dataRaw);
             current(sweepsSamples*(sweep-1)+1:sweepsSamples*sweep)=dataRaw;
         else
             error('No current sweep identified')

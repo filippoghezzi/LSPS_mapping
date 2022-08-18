@@ -46,17 +46,17 @@ function LSPS_plotIndividualMap(rez)
         t.FontSize=12;
     end
     
-% % % % % % % % %     % Choose laser power for spike time analysis for extracellular
-% % % % % % % % %     % calibration recordings
-% % % % % % % % %     if ~isempty(par.mapLaserPower)
-% % % % % % % % %         opts.Resize='on';
-% % % % % % % % %         opts.WindowStyle='normal';
-% % % % % % % % %         opts.Interpreter = 'tex';
-% % % % % % % % %         laserPower=inputdlg('Choose laser power                                           \color{white} .','Laser calibration',1,{'10-50'},opts);
-% % % % % % % % %         rez.par.mapSelectedLaserPower=str2double(laserPower{1});
-% % % % % % % % %         rez.spikeTimes=rez.spikeTimes(par.mapLaserPower*10==rez.par.mapSelectedLaserPower);
-% % % % % % % % %         save(fullfile(par.dirOUT,'LSPS_Results.mat'),'rez')
-% % % % % % % % %     end
+    % Choose laser power for spike time analysis for extracellular
+    % calibration recordings
+    if ~isempty(par.mapLaserPower)
+        opts.Resize='on';
+        opts.WindowStyle='normal';
+        opts.Interpreter = 'tex';
+        laserPower=inputdlg('Choose laser power                                           \color{white} .','Laser calibration',1,{'10-50'},opts);
+        rez.par.mapSelectedLaserPower=str2double(laserPower{1});
+        rez.spikeTimes=rez.spikeTimes(par.mapLaserPower*10==rez.par.mapSelectedLaserPower);
+        save(fullfile(par.dirOUT,'LSPS_Results.mat'),'rez')
+    end
     savefig(fullfile(par.dirOUT,'IndividualMaps.fig'))
 %     pause
     if ~par.qualityCheck

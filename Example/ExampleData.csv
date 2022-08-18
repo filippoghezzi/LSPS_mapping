@@ -1,7 +1,7 @@
-﻿MouseID,MouseAge,MouseCoatColor,MouseEyesOpen,MouseGenetics,MouseGenotype,BrainArea,SliceOrientation,CellTarget,CellType,CellLayer,CellMorphology,CellID,foldername,filename,Experiment,Vh,OptoLED,MapNumber,MapCellPosition,MapShift,MapIorE,MapOrientation,MapType,MapTechnology,MapStimulus,MapDIC,Discard
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709052.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709053.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709054.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709055.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,SX25.6_Pos1.png,0
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709056.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0
-SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709057.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0
+﻿MouseID,MouseAge,MouseCoatColor,MouseEyesOpen,MouseGenetics,MouseGenotype,BrainArea,SliceOrientation,CellTarget,CellType,CellLayer,CellMorphology,CellID,foldername,filename,Experiment,Vh,OptoLED,MapNumber,MapCellPosition,MapShift,MapIorE,MapOrientation,MapType,MapTechnology,MapStimulus,MapDIC,Discard,MapLaserPower
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709052.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0,
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709053.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0,
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709054.abf,LSPS,15,NaN,2,16,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0,
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709055.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,SX25.6_Pos1.png,0,
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709056.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0,
+SX25,14,Agouti,1,LHX6,NaN,V1,Coronal,LHX6,PV,4,Pyr,SX25.6b,C:\Users\Butt Lab\Documents\GitHub\LSPS_mapping\Example,20709057.abf,LSPS,15,NaN,1,6,NaN,Inhibitory,Left,New,UGA-42,Glutamate,,0,

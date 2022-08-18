@@ -37,6 +37,238 @@ end
 
 function rez=JS_modifyMaps(rez)
     switch rez.par.cellID
+        case 'NTSR5.1'
+           rez.AUCmaps=rez.AUCmaps(3:end-2,:); 
+           rez.layersMap=rez.layersMap(3:end-2,:);
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'NTSR5.2'
+           rez.AUCmaps=rez.AUCmaps(1:18,:); 
+           rez.layersMap=rez.layersMap(1:18,:); 
+        case 'NTSR22.2'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:);
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'NTSB61.4'
+           rez.AUCmaps=rez.AUCmaps(1:19,:); 
+           rez.layersMap=rez.layersMap(1:19,:); 
+        case 'NTSR1.2'
+           rez.AUCmaps=rez.AUCmaps(1:18,:); 
+           rez.layersMap=rez.layersMap(1:18,:); 
+        case 'NTSR5.3'
+           rez.AUCmaps=rez.AUCmaps(4:end-1,:); 
+           rez.layersMap=rez.layersMap(4:end-1,:);
+           rez.cellYcoordinate=rez.cellYcoordinate-3;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-3;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'NTSR20.2'
+           rez.AUCmaps=rez.AUCmaps(4:end,:); 
+           rez.layersMap=rez.layersMap(4:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-3;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-3;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX69.2'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX69.1'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX66.1'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX45.1'
+           rez.AUCmaps=rez.AUCmaps(2:25,:); 
+           rez.layersMap=rez.layersMap(2:25,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX43.1'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SX28.6'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA39.1'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA68.1'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA70.1'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA75.2'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA140.3'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA140.2'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA140.1'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-2;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA65.3'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
+        case 'SA29.2'
+           rez.AUCmaps=rez.AUCmaps(2:25,:); 
+           rez.layersMap=rez.layersMap(2:25,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;            
+        case 'SA29.4'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;            
+        case 'SX7.1'
+           rez.AUCmaps=rez.AUCmaps(1:23,:); 
+           rez.layersMap=rez.layersMap(1:23,:);  
+        case 'SX58.1'
+           rez.AUCmaps=rez.AUCmaps(1:24,:); 
+           rez.layersMap=rez.layersMap(1:24,:);  
+        case 'SX65.2'
+           rez.AUCmaps=rez.AUCmaps(1:24,:); 
+           rez.layersMap=rez.layersMap(1:24,:);  
+        case 'SX65.1'
+           rez.AUCmaps=rez.AUCmaps(1:24,:); 
+           rez.layersMap=rez.layersMap(1:24,:);  
+        case 'SA46.2'
+           rez.AUCmaps=rez.AUCmaps(1:24,:); 
+           rez.layersMap=rez.layersMap(1:24,:);  
+        case 'SA139.1'
+           rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;            
+        case 'SA18.1'
+            rez.AUCmaps=rez.AUCmaps(1:19,:); 
+           rez.layersMap=rez.layersMap(1:19,:);        
+        case 'SA18.3'
+            rez.AUCmaps=rez.AUCmaps(1:19,:); 
+           rez.layersMap=rez.layersMap(1:19,:); 
+        case 'SA26.4'
+            rez.AUCmaps=rez.AUCmaps(1:19,:); 
+           rez.layersMap=rez.layersMap(1:19,:); 
+        case 'SA27.3'
+            rez.AUCmaps=rez.AUCmaps(1:19,:); 
+           rez.layersMap=rez.layersMap(1:19,:); 
+        case 'SA71.3'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;           
+        case 'SA136.2'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+         case 'SX25.6b'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX16.1'
+            rez.AUCmaps=rez.AUCmaps(1:18,:); 
+           rez.layersMap=rez.layersMap(1:18,:); 
+        case 'SX16.2'
+            rez.AUCmaps=rez.AUCmaps(1:18,:); 
+           rez.layersMap=rez.layersMap(1:18,:);             
+        case 'SX25.6'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SX14.3'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+        case 'SA146.3'
+            rez.AUCmaps=rez.AUCmaps(2:end,:); 
+           rez.layersMap=rez.layersMap(2:end,:); 
+           rez.cellYcoordinate=rez.cellYcoordinate-1;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-1;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17; 
+           
         case 'SA155.2'
            rez.AUCmaps=rez.AUCmaps(1:19,:); 
            rez.layersMap=rez.layersMap(1:19,:);
@@ -46,6 +278,13 @@ function rez=JS_modifyMaps(rez)
         case 'SA158.2'
            rez.AUCmaps=rez.AUCmaps(1:18,:); 
            rez.layersMap=rez.layersMap(1:18,:);
+        case 'LD45.4'
+           rez.AUCmaps=rez.AUCmaps(3:end,:); 
+           rez.layersMap=rez.layersMap(3:end,:);
+           rez.cellYcoordinate=rez.cellYcoordinate-3;
+           rez.layersCoordinates.Y=rez.layersCoordinates.Y-2;
+           rez.layersCoordinates.Y(1,:)=0;
+           rez.layersCoordinates.Y(end,:)=17;
         case 'LD41.1'
            rez.AUCmaps=rez.AUCmaps(3:end,:); 
            rez.layersMap=rez.layersMap(3:end,:);
@@ -54,13 +293,6 @@ function rez=JS_modifyMaps(rez)
            rez.layersCoordinates.Y(1,:)=0;
            rez.layersCoordinates.Y(end,:)=17;
         case 'LD41.2'
-           rez.AUCmaps=rez.AUCmaps(4:end,:); 
-           rez.layersMap=rez.layersMap(4:end,:);
-           rez.cellYcoordinate=rez.cellYcoordinate-3;
-           rez.layersCoordinates.Y=rez.layersCoordinates.Y-3;
-           rez.layersCoordinates.Y(1,:)=0;
-           rez.layersCoordinates.Y(end,:)=17;
-        case 'NTSR5.3'
            rez.AUCmaps=rez.AUCmaps(4:end,:); 
            rez.layersMap=rez.layersMap(4:end,:);
            rez.cellYcoordinate=rez.cellYcoordinate-3;
